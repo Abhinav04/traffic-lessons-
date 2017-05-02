@@ -48,7 +48,10 @@ void drawBall(void) {
 
 void scr1(void)
 {
-    glClear(GL_COLOR_BUFFER_BIT);
+//    glClear(GL_COLOR_BUFFER_BIT);
+
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);        // Clear The Screen And The Depth Buffer
+  glLoadIdentity(); 
     //glColor3f(1.0,0.0,0.0);
     //RenderString(100.0,500.0,GLUT_BITMAP_TIMES_ROMAN_24,"Hello opengl\n");
     glColor3f(1,0,0);
