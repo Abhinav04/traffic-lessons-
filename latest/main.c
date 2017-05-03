@@ -7,7 +7,7 @@
 
 GLfloat pi=3.14,t=0.0;
 int window,mov=1;
-GLfloat i,sig=0,red=0,yellow=1,green=2,pos=-500.0,manpos=500.0;
+GLfloat i,sig=0,red=0,yellow=1,green=2,pos=-500.0,manpos=500.0,manlength=450;
 
 void circle(GLfloat x,GLfloat y,GLfloat r,GLfloat rd,GLfloat gr,GLfloat bl)
 {
@@ -492,11 +492,53 @@ void car()
     {
         while(manpos>200)
         {
+        circle(1445.0,manpos-50.0,50,0.7,0.7,0.7);
 
-        circle(1445.0,manpos-50.0,50,1.0,1.0,1.0);
+       /*  glBegin(GL_POINTS);
+         glColor3f(0.0,0.0,0.0);
+         glPointSize(25.0);
+         glVertex2f(1430,manpos-70.0);
+         glVertex2f(1450,manpos-70.0);
+         glEnd();*/
         manpos=manpos-50.0;
+
+
+        glBegin(GL_LINES);
+        glColor3f(0.7,0.7,0.7);
+        glVertex2f(1445,manlength-100.0);
+        glVertex2f(1445,manlength-5.0);
+        glEnd();
+
+        glBegin(GL_LINES);
+        glColor3f(0.7,0.7,0.7);
+        glVertex2f(1445,manlength-100.0);
+        glVertex2f(1415,manlength-150.0);
+        glEnd();
+
+        glBegin(GL_LINES);
+        glColor3f(0.7,0.7,0.7);
+        glVertex2f(1445,manlength-100.0);
+        glVertex2f(1475,manlength-150.0);
+        glEnd();
+
+        glBegin(GL_LINES);
+        glColor3f(0.7,0.7,0.7);
+        glVertex2f(1445,manlength-50.0);
+        glVertex2f(1475,manlength-100.0);
+        glEnd();
+
+        glBegin(GL_LINES);
+        glColor3f(0.7,0.7,0.7);
+        glVertex2f(1445,manlength-50.0);
+        glVertex2f(1415,manlength-100.0);
+        glEnd();
+
+
+        manlength=manlength-50.0;
         glFlush();
         sleep(1);
+        scr2();
+
         }
 
         glColor3f(0.2,0.0,0.0);
