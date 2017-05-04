@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1493818350 source:/home/abhinav/projects/cgproject/latest/main.c
+1493891186 source:/home/abhinav/projects/cgproject/latest/main.c
 	<stdio.h>
 	<stdlib.h>
 	<GL/glut.h>

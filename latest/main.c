@@ -6,8 +6,9 @@
 #include<math.h>
 
 GLfloat pi=3.14,t=0.0;
-int window,mov=1;
+int window,mov=1,night=0,temp=0;
 GLfloat i,sig=0,red=0,yellow=1,green=2,pos=-500.0,manpos=500.0,manlength=450;
+GLfloat r=0.6,g=0.7,b=1.0;
 
 void circle(GLfloat x,GLfloat y,GLfloat r,GLfloat rd,GLfloat gr,GLfloat bl)
 {
@@ -22,6 +23,30 @@ void circle(GLfloat x,GLfloat y,GLfloat r,GLfloat rd,GLfloat gr,GLfloat bl)
     glEnd();
 }
 
+void star(GLfloat x,GLfloat y)
+{
+    glBegin(GL_LINES);
+    glColor3f(1.0,1.0,0.5);
+    glVertex2f(x,y);
+    glColor3f(r,g,b);
+    glVertex2f(x,y+5);
+    ///
+    glColor3f(1.0,1.0,0.5);
+    glVertex2f(x,y);
+    glColor3f(r,g,b);
+    glVertex2f(x,y-5);
+    ///
+    glColor3f(1.0,1.0,0.5);
+    glVertex2f(x,y);
+    glColor3f(r,g,b);
+    glVertex2f(x+5,y);
+    ///
+    glColor3f(1.0,1.0,0.5);
+    glVertex2f(x,y);
+    glColor3f(r,g,b);
+    glVertex2f(x-5,y);
+}
+
 void background(GLfloat r , GLfloat g , GLfloat b)
 {
     glColor3f(r,g,b);
@@ -31,6 +56,15 @@ void background(GLfloat r , GLfloat g , GLfloat b)
     glVertex2f(2000.0,1000.0);
     glVertex2f(0.0,1000.0);
     glEnd();
+    if(night==1)
+    {
+        circle(1700.0,900.0,50.0,1.0,1.0,0.9);
+        circle(1710.0,910.0,50.0,r,g,b);
+        //circle(400.0,900.0,5.0,1.0,1.0,0.9);
+        //circle(900.0,840.0,5.0,1.0,1.0,0.9);
+        star(400.0,900.0);
+        star(900.0,940.0);
+    }
 }
 
 void RenderString(float x, float y, void *font, const char* string)
@@ -46,7 +80,7 @@ void RenderString(float x, float y, void *font, const char* string)
 void scr1(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    background(1.0,1.0,1.0);
+    background(0.0,0.0,0.0);
     glColor3f(1,0,0);
     RenderString(240,800,GLUT_BITMAP_TIMES_ROMAN_24,"DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING");
     RenderString(240,785,GLUT_BITMAP_TIMES_ROMAN_24,"-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
@@ -55,13 +89,13 @@ void scr1(void)
     RenderString(240,685,GLUT_BITMAP_TIMES_ROMAN_24,"---------------------------");
     glColor3f(0.8,0,0);
     RenderString(240,540,GLUT_BITMAP_TIMES_ROMAN_24,"BY:");
-    glColor3f(0.2,0.2,0.2);
+    glColor3f(1.0,1.0,1.0);
     RenderString(240,500,GLUT_BITMAP_TIMES_ROMAN_24,"Abhinav Bagrecha:  1PE14CS029");
-    RenderString(240,520,GLUT_BITMAP_TIMES_ROMAN_24,"Anmol Sharma:   1PE14CS026");
+    RenderString(240,460,GLUT_BITMAP_TIMES_ROMAN_24,"Anmol Sharma:   1PE14CS026");
     glColor3f(0.8,0,0);
-    RenderString(240,400,GLUT_BITMAP_TIMES_ROMAN_24,"Project guide:-");
-    glColor3f(0.2,0.2,0.2);
-    RenderString(240,370,GLUT_BITMAP_TIMES_ROMAN_24,"K S V K Shrikant");
+    RenderString(240,420,GLUT_BITMAP_TIMES_ROMAN_24,"Project guide:-");
+    glColor3f(1.0,1.0,1.0);
+    RenderString(240,380,GLUT_BITMAP_TIMES_ROMAN_24,"K S V K Shrikant");
     RenderString(240,340,GLUT_BITMAP_TIMES_ROMAN_24,"Bidisha Goswami");
     glColor3f(1,0,0);
     RenderString(240,100,GLUT_BITMAP_TIMES_ROMAN_24,"PRESS    ------>");
@@ -490,16 +524,16 @@ void car()
     }
     if(pos==760.0)
     {
-        while(manpos>200)
+        while(manpos>325)
         {
         circle(1445.0,manpos-50.0,50,0.7,0.7,0.7);
 
-       /*  glBegin(GL_POINTS);
+         glBegin(GL_POINTS);
          glColor3f(0.0,0.0,0.0);
-         glPointSize(25.0);
+         glPointSize(50.0);
          glVertex2f(1430,manpos-70.0);
          glVertex2f(1450,manpos-70.0);
-         glEnd();*/
+         glEnd();
         manpos=manpos-50.0;
 
 
@@ -541,6 +575,83 @@ void car()
 
         }
 
+while(temp<5)
+{
+        circle(1515.0,manpos-50.0,50,0.7,0.7,0.7);
+        glBegin(GL_LINES);
+        glColor3f(0.7,0.7,0.7);
+        glVertex2f(1515,manlength-100.0);
+        glVertex2f(1515,manlength-10.0);
+        glEnd();
+
+        glBegin(GL_LINES);
+        glColor3f(0.7,0.7,0.7);
+        glVertex2f(1515,manlength-100.0);
+        glVertex2f(1485,manlength-150.0);
+        glEnd();
+
+        glBegin(GL_LINES);
+        glColor3f(0.7,0.7,0.7);
+        glVertex2f(1515,manlength-100.0);
+        glVertex2f(1545,manlength-150.0);
+        glEnd();
+
+        glBegin(GL_LINES);
+        glColor3f(0.7,0.7,0.7);
+        glVertex2f(1515,manlength-50.0);
+        glVertex2f(1545,manlength-100.0);
+        glEnd();
+
+        glBegin(GL_LINES);
+        glColor3f(0.7,0.7,0.7);
+        glVertex2f(1515,manlength-50.0);
+        glVertex2f(1485,manlength-100.0);
+        glEnd();
+
+        if(temp==0)
+        {
+        temp=temp+1;
+        glColor3f(1.0,0.0,0.0);
+        RenderString(1400.0,300.0,GLUT_BITMAP_TIMES_ROMAN_24,"STOP!! WHEN THE SIGNAL IS RED!.");
+        glFlush();
+        sleep(3);
+        scr2();
+        }
+
+        if(temp==1)
+        {
+        temp=temp+1;
+         glColor3f(1.0,0.0,0.0);
+        RenderString(1400.0,300.0,GLUT_BITMAP_TIMES_ROMAN_24,"THAT CAR JUST HIT ME!!!!!!");
+        glFlush();
+        sleep(3);
+        scr2();
+        }
+
+if(temp==2)
+{
+temp++;
+         glColor3f(1.0,0.0,0.0);
+        RenderString(1400.0,300.0,GLUT_BITMAP_TIMES_ROMAN_24,"I COULD HAVE DIED!!!!!!");
+        glFlush();
+        sleep(3);
+        scr2();
+        }
+
+if(temp==3)
+{
+temp=temp+2;
+         glColor3f(1.0,0.0,0.0);
+        RenderString(1400.0,300.0,GLUT_BITMAP_TIMES_ROMAN_24,"PLEASE FOLLOW TRAFFIC RULES!!!!!!");
+        glFlush();
+        sleep(3);
+        scr2();
+        break;
+
+}
+
+
+}
         glColor3f(0.2,0.0,0.0);
         RenderString(1610.0,650.0,GLUT_BITMAP_TIMES_ROMAN_24,"STOP!!");
         glFlush();
@@ -568,7 +679,7 @@ void car()
 
 void scr2()
 {
-    background(0.6,0.7,1.0);
+    background(r,g,b);
     road();
     houses();
     shop();
@@ -598,7 +709,19 @@ switch(key){
 	break;
 
 	case GLUT_KEY_UP:
-	exit(0);
+    r=0.0;
+    g=0.0;
+    b=0.0;
+    night=1;
+    //scr2();
+	break;
+
+	case GLUT_KEY_LEFT:
+    r=0.6;
+    g=0.7;
+    b=1.0;
+
+    //scr2();
 	break;
 
 }
